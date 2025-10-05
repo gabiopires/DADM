@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "./Menu.css";
 
-export default function Menu({ onClose }) {
+type Props = {
+  onClose: () => void
+}
+
+export default function Menu({ onClose }: Props) {
   // Estados de cada categoria
   const [expanded, setExpanded] = useState({
     administracao: false,
@@ -14,8 +17,8 @@ export default function Menu({ onClose }) {
   });
 
   // Função para alternar
-  const toggleExpand = (key) => {
-    setExpanded((prev) => ({
+  const toggleExpand = (key: string) => {
+    setExpanded((prev: any) => ({
       ...prev,
       [key]: !prev[key],
     }));
@@ -197,46 +200,47 @@ export default function Menu({ onClose }) {
       </View>
     </View>
   );
-
-  const styles = StyleSheet.create({  container: {
-    flex: 1,
-    backgroundColor: "#7b4dff",
-    paddingTop: 40,
-    paddingHorizontal: 15,
-  },
-  closeButton: {
-    alignSelf: "flex-end",
-    marginBottom: 20,
-  },
-  menu: {
-    flex: 1,
-  },
-  menuItem: {
-    paddingVertical: 15,
-  },
-  menuText: {
-    fontSize: 18,
-    color: "white",
-    fontWeight: "bold",
-  },
-  subItem: {
-    paddingLeft: 20,
-    paddingVertical: 10,
-  },
-  subText: {
-    fontSize: 15,
-    color: "#e0d7ff",
-  },
-  logout: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: "auto",
-    marginBottom: 30,
-  },
-  logoutText: {
-    color: "white",
-    marginLeft: 10,
-    fontSize: 16,
-  },
-  });
 }
+
+  const styles = StyleSheet.create({  
+    container: {
+      flex: 1,
+      backgroundColor: "#7b4dff",
+      paddingTop: 40,
+      paddingHorizontal: 15,
+    },
+    closeButton: {
+      alignSelf: "flex-end",
+      marginBottom: 20,
+    },
+    menu: {
+      flex: 1,
+    },
+    menuItem: {
+      paddingVertical: 15,
+    },
+    menuText: {
+      fontSize: 18,
+      color: "white",
+      fontWeight: "bold",
+    },
+    subItem: {
+      paddingLeft: 20,
+      paddingVertical: 10,
+    },
+    subText: {
+      fontSize: 15,
+      color: "#e0d7ff",
+    },
+    logout: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginTop: "auto",
+      marginBottom: 30,
+    },
+    logoutText: {
+      color: "white",
+      marginLeft: 10,
+      fontSize: 16,
+    },
+  });

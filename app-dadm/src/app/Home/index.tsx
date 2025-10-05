@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Modal } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import styles from "../css/styleHome.js";
-import AlertPopup from "../components/alert.js";
-import Menu from "../components/menu.js";
+import styles from "../../css/styleHome.js"
+import AlertPopup from "../../components/alert/alert";
+import Menu from "../../components/menu/menu";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);

@@ -1,7 +1,12 @@
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function AlertPopup({ visible, onClose }) {
+type Props = {
+  visible: boolean,
+  onClose: () => void
+}
+
+export default function AlertPopup({ visible, onClose }: Props) {
   return (
     <Modal transparent={true} visible={visible} animationType="fade">
       <View style={styles.modalBackground}>
