@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app-dadm",
+    "name": "GeAcad",
     "slug": "app-dadm",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome2.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.appdadm"
     },
     "web": {
       "output": "static",
