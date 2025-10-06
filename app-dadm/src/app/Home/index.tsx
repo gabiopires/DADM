@@ -1,29 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import styles from "../../css/styleHome.js"
+import { View, Text, StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import AlertPopup from "../../components/alert/alert";
-import Menu from "../../components/menu/menu";
+import { useRouter } from "expo-router";
+import Top from "../../components/top/top"
+import CardOptions from "../../components/cardOptions/cardOptions"
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const router = useRouter();
+
+  type MIName = React.ComponentProps<typeof MaterialIcons>["name"];
+  const options = ["Administração", "Acadêmico", "Docência", "Pessoas", "Secretaria"]
+  const IconoOptions: MIName[] = ["admin-panel-settings", "school", "menu-book", "people-outline", "description",]
 
   return (
     <View style={styles.container}>
       {/* Popup de alerta */}
       <AlertPopup visible={showModal} onClose={() => setShowModal(false)} />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => setMenuVisible(true)}>
-          <Ionicons name="menu" size={28} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>GeAcad</Text>
-        <Ionicons name="person-circle-outline" size={28} color="white" />
-      </View>
+      <Top title="GeAcad"/>
 
-      {/* Saudação */}
       <View style={styles.welcome}>
         <Text style={styles.welcomeText}>Olá, Ingrid!</Text>
         <Text style={styles.dateText}>terça-feira, 23 de agosto</Text>
@@ -31,47 +28,59 @@ export default function Home() {
 
       {/* Grid de botões */}
       <View style={styles.grid}>
-        <TouchableOpacity style={styles.card} onPress={() => setShowModal(true)}>
-          <MaterialIcons name="admin-panel-settings" size={32} color="#7b4dff" />
-          <Text style={styles.cardText}>Administração</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card} onPress={() => setShowModal(true)}>
-          <Ionicons name="school-outline" size={32} color="#7b4dff" />
-          <Text style={styles.cardText}>Acadêmico</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card} onPress={() => setShowModal(true)}>
-          <Ionicons name="book-outline" size={32} color="#7b4dff" />
-          <Text style={styles.cardText}>Docência</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card}>
-          <Ionicons name="people-outline" size={32} color="#7b4dff" />
-          <Text style={styles.cardText}>Pessoas</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card} onPress={() => setShowModal(true)}>
-          <Ionicons name="document-text-outline" size={32} color="#7b4dff" />
-          <Text style={styles.cardText}>Secretaria</Text>
-        </TouchableOpacity>
+        {options.map((i, index)=>(
+          <CardOptions key={index} title={i} icon={IconoOptions[index]} onClick={i == "Pessoas" ? () => router.push("../pessoas") : ()=>setShowModal(true)}/>
+        ))}
       </View>
-
-      {/* Menu lateral em Modal */}
-      <Modal visible={menuVisible} animationType="slide" transparent={true}>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-          {/* Lado esquerdo → Menu */}
-          <View style={{ width: "75%", height: "100%" }}>
-            <Menu onClose={() => setMenuVisible(false)} />
-          </View>
-
-          {/* Lado direito → área escura que fecha o menu */}
-          <TouchableOpacity
-            style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
-            onPress={() => setMenuVisible(false)}
-          />
-        </View>
-      </Modal>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  welcome: {
+    padding: 20,
+  },
+  welcomeText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  dateText: {
+    fontSize: 14,
+    color: "#7b4dff",
+    marginTop: 4,
+  },
+  grid: {
+    flexDirection: "row",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    gap: 25,
+    borderColor: "#000",
+    borderStyle: "solid",
+    marginTop: 20,
+  },
+  card: {
+    width: "40%",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 20,
+    marginVertical: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  cardText: {
+    marginTop: 10,
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#333",
+    textAlign: "center",
+  },
+})
