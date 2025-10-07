@@ -13,6 +13,12 @@ export default function Home() {
   type MIName = React.ComponentProps<typeof MaterialIcons>["name"];
   const options = ["Administração", "Acadêmico", "Docência", "Pessoas", "Secretaria"]
   const IconoOptions: MIName[] = ["admin-panel-settings", "school", "menu-book", "people-outline", "description",]
+  const hoje = new Date();
+  const dataFormatada = hoje.toLocaleDateString("pt-BR", {
+    weekday: "long",  
+    day: "numeric",    
+    month: "long",     
+  });
 
   return (
     <View style={styles.container}>
@@ -23,7 +29,7 @@ export default function Home() {
 
       <View style={styles.welcome}>
         <Text style={styles.welcomeText}>Olá, Ingrid!</Text>
-        <Text style={styles.dateText}>terça-feira, 23 de agosto</Text>
+        <Text style={styles.dateText}>{dataFormatada.charAt(0).toUpperCase() + dataFormatada.slice(1)}</Text>
       </View>
 
       {/* Grid de botões */}
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 14,
-    color: "#7b4dff",
+    color: "#a056eb",
     marginTop: 4,
   },
   grid: {

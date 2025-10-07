@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 type Props = {
   onClose: () => void
@@ -15,6 +16,7 @@ export default function Menu({ onClose }: Props) {
     pessoas: false,
     secretaria: false,
   });
+  const router = useRouter();
 
   // Função para alternar
   const toggleExpand = (key: string) => {
@@ -152,7 +154,7 @@ export default function Menu({ onClose }: Props) {
             <TouchableOpacity style={styles.subItem}>
               <Text style={styles.subText}>Professores</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.subItem}>
+            <TouchableOpacity style={styles.subItem} onPress={()=>router.push("../../app/pessoas/alunos")}>
               <Text style={styles.subText}>Alunos</Text>
             </TouchableOpacity>
           </>
@@ -185,8 +187,8 @@ export default function Menu({ onClose }: Props) {
 
         {/* Sobre */}
         <TouchableOpacity
-          style={styles.menuItem}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          style={styles.menuItem} onPress={()=>router.push("../../sobre")}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }} >
             <Text style={styles.menuText}>Sobre</Text>
           </View>
           </TouchableOpacity>
@@ -205,7 +207,7 @@ export default function Menu({ onClose }: Props) {
   const styles = StyleSheet.create({  
     container: {
       flex: 1,
-      backgroundColor: "#7b4dff",
+      backgroundColor: "#a056eb",
       paddingTop: 40,
       paddingHorizontal: 15,
     },

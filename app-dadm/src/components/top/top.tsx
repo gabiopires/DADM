@@ -43,7 +43,7 @@ export default function Top({ title }: Props) {
 
 const styles = StyleSheet.create({
     headerHome: {
-        backgroundColor: "#7b4dff",
+        backgroundColor: "#a056eb",
         flexDirection: "row",
         alignItems: "flex-end",
         justifyContent: "space-between",
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         height: 170,
     },
     header: {
-        backgroundColor: "#7b4dff",
+        backgroundColor: "#a056eb",
         flexDirection: "row",
         alignItems: "flex-end",
         justifyContent: "space-between",
