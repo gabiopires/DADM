@@ -12,7 +12,7 @@ export default function CardPessoas({ pessoa, pessoaTipo }: Props & { pessoa: Ty
     const [seeOptions, setSeeOptions] = useState(false);
 
     return (
-        <View>
+        <View style={{ width: "95%", justifyContent: "flex-start", alignItems: "center"}}>
             <TouchableOpacity style={styles.card} onPress={()=> setSeeOptions(!seeOptions)}>
                 <View style={styles.cardText}>
                     {pessoa.nome}
@@ -75,7 +75,7 @@ export default function CardPessoas({ pessoa, pessoaTipo }: Props & { pessoa: Ty
                         </View>
                         <View style={styles.inputOption}>{pessoa.sexo}</View>
                     </View>
-                    {pessoa.sexo == "M" || "m" ? //mostra somente se for masculino
+                    {pessoa.sexo == "M" ? //mostra somente se for masculino
                         <View style={styles.option}>
                             <View style={{width:"100%", paddingLeft: 10}}>
                                 <Text>Reservista</Text>
@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         borderRadius: 12,
         padding: 20,
-        marginVertical: -10,
         marginTop: 25,
         flexDirection: "row",
         alignItems: "flex-start",
@@ -165,7 +164,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
-        borderRadius: 12,
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12,
     },
     option:{
         width: "50%",

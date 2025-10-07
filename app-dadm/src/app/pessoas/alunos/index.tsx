@@ -40,12 +40,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     grid: {
-        width: "100%",
-        // display: "flex",
-        // flexDirection: "column",
-        // justifyContent: "center",   
-        // alignItems: "center",
-        marginTop: 20,
-        marginLeft: 20,
+        flex: 1,
+        justifyContent: "flex-start",
+        alignItems: "center",
     },
 })

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from "./Home/index"
 
-// Tela Splash (com animação da logo)
 function SplashScreen() {
   const scaleValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Animação de escala
     Animated.loop(
       Animated.timing(scaleValue, {
         toValue: 1,
@@ -18,7 +17,6 @@ function SplashScreen() {
     ).start();
   }, [scaleValue]);
 
-  // Interpolação: transforma 0 → 1 em "0deg" → "360deg"
   const scaleInterpolate = scaleValue.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -39,17 +37,23 @@ function SplashScreen() {
   );
 }
 
-// Componente principal do App
 export default function App() {
   const [mostrarSplash, setMostrarSplash] = useState(true);
 
   useEffect(() => {
-    // Mostra a splash por 4 segundos
-    const timer = setTimeout(() => {
-      setMostrarSplash(false);
-    }, 4000);
-
-    return () => clearTimeout(timer);
+    let timer: any;
+    (async () => {
+      const seen = await AsyncStorage.getItem('splashShown');
+      if (seen === '1') {
+        setMostrarSplash(false);
+      } else {
+        timer = setTimeout(() => {
+          setMostrarSplash(false);
+          AsyncStorage.setItem('splashShown', '1');
+        }, 4000);
+      }
+    })();
+    return () => { if (timer) clearTimeout(timer); };
   }, []);
 
   if (mostrarSplash) {
@@ -78,4 +82,3 @@ const styles = StyleSheet.create({
     color: '#333',
   },
 });
-
