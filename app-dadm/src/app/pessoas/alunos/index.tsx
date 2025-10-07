@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Top from "../../../components/top/top"
 import CardPessoas from "../../../components/compPessoas/cardPessoas"
-import { TypeAlunos } from "../../../components/type"
+import { TypePessoa } from "../../../components/type"
 import { getAllAluno } from "../../../api/api"; 
 
 export default function Alunos() {
 
-    const [alunos,setAlunos] = useState<TypeAlunos[]>([]);
+    const [alunos,setAlunos] = useState<TypePessoa[]>([]);
 
     async function getAlunos() {
         try {
@@ -27,7 +27,7 @@ export default function Alunos() {
             <Top title="Alunos"/>
             <View style={styles.grid}>
                 {alunos.map((a, index)=>(
-                    <CardPessoas key={index} aluno={a}/>
+                    <CardPessoas key={index} pessoa={a} pessoaTipo="1"/>
                 ))}
             </View>
         </View>

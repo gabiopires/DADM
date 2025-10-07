@@ -1,4 +1,5 @@
-export type TypeAlunos = {
+
+export type TypePessoa = {
     nome: string, 
     cpf: string,
     matricula: string,
@@ -11,4 +12,7 @@ export type TypeAlunos = {
     telefone: string,
     email: string,
     certificadoReservista: string,
+    titulacao?: string,
+    categiria?: string,
+    regime?: string
 }
