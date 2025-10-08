@@ -9,5 +9,4 @@ public class GeacadApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GeacadApplication.class, args);
 	}
-
 }
